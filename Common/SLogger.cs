@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace ArraySumLibrary
+namespace Common
 {
     public class SLogger
     {

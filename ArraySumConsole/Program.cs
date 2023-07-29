@@ -1,16 +1,19 @@
-﻿using ArraySumLibrary;
+﻿using ArraySumLibrary.CarrierAlgebra;
+using ArraySumLibrary.ScalarAlgebra;
+using Common;
+using Serilog;
+using System;
 
-namespace ArraySumConsole
+SLogger sLogger = new SLogger();
+try
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            //логирование
-            SLogger sLogger = new SLogger();
-
-            ArraySumTest arraySumTest = new ArraySumTest();
-            arraySumTest.TestSpeed(1235678910);
-        }
-    }
+    
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, ex.Message);
+}
+finally
+{
+    Log.CloseAndFlush();
 }
