@@ -1,9 +1,10 @@
-﻿using ArraySumLibrary.ScalarAlgebra;
+﻿using ArraySumLibrary.ScalarAlgebra.Base;
 
-namespace Tests.TestData
+namespace Tests.CorrectResult.ScalarAlgebra.TestsData
 {
     public class Int64CalculatorTestData
     {
+        private static readonly Int64Calculator int64Calculator = new Int64Calculator();
         /// <summary>
         /// data for testing addition
         /// </summary>
@@ -12,14 +13,14 @@ namespace Tests.TestData
             {
                 new object[]
                 {
-                    new Int64Calculator().Add(-5,15),
+                    int64Calculator.Add(-5,15),
                     10
                 },
                 new object[]
                 {
-                    new Int64Calculator().Add(1,15),
+                    int64Calculator.Add(1,15),
                     16
                 }
-            };        
+            };
     }
 }

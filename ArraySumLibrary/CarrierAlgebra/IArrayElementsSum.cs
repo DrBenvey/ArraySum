@@ -7,7 +7,7 @@ namespace ArraySumLibrary.CarrierAlgebra
     /// element addition operations
     /// https://habr.com/ru/articles/435840/
     /// </summary>
-    public interface IArrayElementsSum<T> where T : struct
+    public interface IArrayElementsSum<T>
     {
         /// <summary>
         /// simple sequential addition
@@ -21,29 +21,5 @@ namespace ArraySumLibrary.CarrierAlgebra
         /// <param name="input">input</param>
         /// <returns>result of summation or OverflowException ex</returns>
         T LinqSumArray(IEnumerable<T> input);
-        /// <summary>
-        /// addition using vectors
-        /// </summary>
-        /// <param name="input">input</param>
-        /// <returns>result of summation or OverflowException ex</returns>
-        T VectorSumArray(IEnumerable<T> input);
-        /// <summary>
-        /// Async addition
-        /// </summary>
-        /// <param name="input">input</param>
-        /// <returns>result of summation or OverflowException ex</returns>
-        Task<T> SumArrayAsync(IEnumerable<T> input);
-        /// <summary>
-        /// addition using vectors
-        /// </summary>
-        /// <param name="input">input</param>
-        /// <returns>result of summation or OverflowException ex</returns>
-        T ThreadSumArray(IEnumerable<T> input);
-        /// <summary>
-        /// addition with Intrinsics
-        /// </summary>
-        /// <param name="input">input</param>
-        /// <returns>result of summation or OverflowException ex</returns>
-        unsafe T IntrinsicsSumArray(IEnumerable<T> input);
     }
 }

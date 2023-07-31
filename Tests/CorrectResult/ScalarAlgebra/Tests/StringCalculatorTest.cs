@@ -1,9 +1,9 @@
-﻿using ArraySumLibrary.ScalarAlgebra;
-using Tests.TestData;
+﻿using ArraySumLibrary.ScalarAlgebra.Base;
+using Tests.CorrectResult.ScalarAlgebra.TestsData;
 
-namespace Tests.Tests
+namespace Tests.CorrectResult.ScalarAlgebra.Tests
 {
-    public class Int64CalculatorTest
+    public class StringCalculatorTest
     {
         /// <summary>
         /// Testing getting zero
@@ -11,7 +11,7 @@ namespace Tests.Tests
         [Fact]
         public void ZeroTest()
         {
-            Assert.True(new Int64Calculator().Zero==0);
+            Assert.True(new StringCalculator().Zero == string.Empty);
         }
 
         /// <summary>
@@ -20,8 +20,8 @@ namespace Tests.Tests
         /// <param name="InCode">programmatically</param>
         /// <param name="InReal">expected</param>
         [Theory]
-        [MemberData(nameof(Int64CalculatorTestData.AddTestDataCorrect), MemberType = typeof(Int64CalculatorTestData))]
-        public void AddTestCorrect(Int64 InCode, Int64 InReal)
+        [MemberData(nameof(StringCalculatorTestData.AddTestDataCorrect), MemberType = typeof(StringCalculatorTestData))]
+        public void AddTestCorrect(string InCode, string InReal)
         {
             Assert.Equal(InReal, InCode);
         }
@@ -32,30 +32,28 @@ namespace Tests.Tests
         [Fact]
         public void AddTestException()
         {
-            Int64Calculator int64Calculator = new Int64Calculator();
-            string res1=string.Empty;           
+            StringCalculator stringCalculator = new StringCalculator();
+            string res1 = string.Empty;
             try
-            {                
-                res1 = int64Calculator.Add(Int64.MaxValue, 11).ToString();
+            {
+                res1 = stringCalculator.Add(null, "sssssss").ToString();
             }
             catch (Exception ex)
             {
-                res1=ex.Message;
+                res1 = ex.Message;
             }
             string res2 = string.Empty;
             try
             {
-                res2 = int64Calculator.Add(Int64.MinValue, -11).ToString();
+                res2 = stringCalculator.Add("bbbbbb", null).ToString();
             }
             catch (Exception ex)
             {
                 res2 = ex.Message;
             }
             Assert.True(
-                        res1== "Arithmetic operation resulted in an overflow." && 
-                        res2 == "Arithmetic operation resulted in an overflow.");
+                        res1 == "Value cannot be null. (Parameter 'a')" &&
+                        res2 == "Value cannot be null. (Parameter 'b')");
         }
-
     }
-
 }
