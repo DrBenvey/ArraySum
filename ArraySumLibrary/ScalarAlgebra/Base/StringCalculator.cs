@@ -3,6 +3,7 @@
     public class StringCalculator : Calculator<string>
     {
         public override string Zero => string.Empty;
+        public override bool IsAdditionAssociative => true;
 
         public override string Add(string a, string b)
         {

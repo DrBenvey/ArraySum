@@ -1,11 +1,7 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace ArraySumLibrary.CarrierAlgebra
+﻿namespace ArraySumLibrary.CarrierAlgebra
 {
     /// <summary>
     /// generic interface describing various implementations
-    /// element addition operations
-    /// https://habr.com/ru/articles/435840/
     /// </summary>
     public interface IArrayElementsSum<T>
     {
@@ -21,5 +17,11 @@ namespace ArraySumLibrary.CarrierAlgebra
         /// <param name="input">input</param>
         /// <returns>result of summation or OverflowException ex</returns>
         T LinqSumArray(IEnumerable<T> input);
+        /// <summary>
+        /// adding with several threads
+        /// </summary>
+        /// <param name="input">input</param>
+        /// <returns>result of summation or OverflowException ex</returns>
+        T ParallerSum(IEnumerable<T> input);
     }
 }

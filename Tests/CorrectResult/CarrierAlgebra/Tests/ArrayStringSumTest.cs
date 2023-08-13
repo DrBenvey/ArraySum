@@ -17,6 +17,7 @@ namespace Tests.CorrectResult.CarrierAlgebra.Tests
                 new StringCalculator());
             string res1 = string.Empty;
             string res2 = string.Empty;
+            string res3 = string.Empty;
             Random rnd = new Random();
 
             string[] a = new string[length];
@@ -38,7 +39,15 @@ namespace Tests.CorrectResult.CarrierAlgebra.Tests
             {
                 res2 = ex.Message;
             }
-            Assert.True(res1 == res2);
+            try
+            {
+                res3 = arrayElementsSum.ParallerSum(a);
+            }
+            catch (Exception ex)
+            {
+                res3 = ex.Message;
+            }
+            Assert.True(res1 == res2 && res3==res2);
         }
         /// <summary>
         /// Testing Sequential Addition with Correct Examples
@@ -59,6 +68,17 @@ namespace Tests.CorrectResult.CarrierAlgebra.Tests
         [Theory]
         [MemberData(nameof(ArrayStringSumTestData.LinqSumArrayTestData), MemberType = typeof(ArrayStringSumTestData))]
         public void LinqSumArrayTestCorrect(string InCode, string InReal)
+        {
+            Assert.Equal(InReal, InCode);
+        }
+        /// <summary>
+        /// Testing ParallerSum with Correct Examples
+        /// </summary>
+        /// <param name="InCode">programmatically</param>
+        /// <param name="InReal">expected</param>
+        [Theory]
+        [MemberData(nameof(ArrayStringSumTestData.ParallerSumTestData), MemberType = typeof(ArrayStringSumTestData))]
+        public void ParallerSumCorrect(string InCode, string InReal)
         {
             Assert.Equal(InReal, InCode);
         }
@@ -91,6 +111,24 @@ namespace Tests.CorrectResult.CarrierAlgebra.Tests
             try
             {
                 res1 = arrayElementsSum.LinqSumArray(new string[2] { "vv", null });
+            }
+            catch (Exception ex)
+            {
+                res1 = ex.Message;
+            }
+            Assert.True(res1 == "Value cannot be null. (Parameter 'b')");
+        }
+        /// <summary>
+        /// Testing ParallerSum with overflow
+        /// </summary>
+        [Fact]
+        public void ParallerSumTestException()
+        {
+            var arrayElementsSum = new ArrayElementsSum<string>(new StringCalculator());
+            string res1 = string.Empty;
+            try
+            {
+                res1 = arrayElementsSum.ParallerSum(new string[2] { "vv", null });
             }
             catch (Exception ex)
             {

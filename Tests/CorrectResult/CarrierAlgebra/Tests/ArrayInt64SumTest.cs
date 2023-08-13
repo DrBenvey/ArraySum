@@ -17,6 +17,7 @@ namespace Tests.CorrectResult.CarrierAlgebra.Tests
                 new Int64Calculator());
             string res1 = string.Empty;
             string res2 = string.Empty;
+            string res3 = string.Empty;
             Random rnd = new Random();
 
             long[] a = new long[length];
@@ -40,7 +41,16 @@ namespace Tests.CorrectResult.CarrierAlgebra.Tests
             {
                 res2 = ex.Message;
             }
-            Assert.True(res1 == res2);
+            try
+            {
+                res3 = arrayElementsSum.ParallerSum(a)
+                        .ToString();
+            }
+            catch (Exception ex)
+            {
+                res3 = ex.Message;
+            }
+            Assert.True(res1 == res2 && res2==res3);
         }
         /// <summary>
         /// Testing Sequential Addition with Correct Examples
@@ -61,6 +71,17 @@ namespace Tests.CorrectResult.CarrierAlgebra.Tests
         [Theory]
         [MemberData(nameof(ArrayInt64SumTestData.LinqSumArrayTestData), MemberType = typeof(ArrayInt64SumTestData))]
         public void LinqSumArrayTestCorrect(long InCode, long InReal)
+        {
+            Assert.Equal(InReal, InCode);
+        }
+        /// <summary>
+        /// Testing linq addition with Correct Examples
+        /// </summary>
+        /// <param name="InCode">programmatically</param>
+        /// <param name="InReal">expected</param>
+        [Theory]
+        [MemberData(nameof(ArrayInt64SumTestData.ParallerSumTestData), MemberType = typeof(ArrayInt64SumTestData))]
+        public void ParallerSumTestCorrect(long InCode, long InReal)
         {
             Assert.Equal(InReal, InCode);
         }
@@ -94,6 +115,25 @@ namespace Tests.CorrectResult.CarrierAlgebra.Tests
             try
             {
                 res1 = arrayElementsSum.LinqSumArray(new long[2] { -11, long.MinValue })
+                        .ToString();
+            }
+            catch (Exception ex)
+            {
+                res1 = ex.Message;
+            }
+            Assert.True(res1 == "Arithmetic operation resulted in an overflow.");
+        }
+        /// <summary>
+        /// Testing ParallerSum with overflow
+        /// </summary>
+        [Fact]
+        public void ParallerSumTestException()
+        {
+            var arrayElementsSum = new ArrayElementsSum<long>(new Int64Calculator());
+            string res1 = string.Empty;
+            try
+            {
+                res1 = arrayElementsSum.ParallerSum(new long[2] { -11, long.MinValue })
                         .ToString();
             }
             catch (Exception ex)

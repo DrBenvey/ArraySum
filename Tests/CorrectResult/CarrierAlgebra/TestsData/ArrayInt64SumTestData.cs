@@ -72,5 +72,32 @@ namespace Tests.CorrectResult.CarrierAlgebra.TestsData
                     25
                 }
             };
+        /// <summary>
+        /// data for testing ParallerSum
+        /// </summary>
+        public static IEnumerable<object[]> ParallerSumTestData =>
+            new List<object[]>
+            {
+                new object[]
+                {
+                    arrayElementsSum.ParallerSum(keyValuePairs[10]),
+                    10
+                },
+                new object[]
+                {
+                    arrayElementsSum.ParallerSum(keyValuePairs[15]),
+                    15
+                },
+                new object[]
+                {
+                    arrayElementsSum.ParallerSum(keyValuePairs[0]),
+                    0
+                },
+                new object[]
+                {
+                    arrayElementsSum.ParallerSum(keyValuePairs[25]),
+                    25
+                }
+            };
     }
 }

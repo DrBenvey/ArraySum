@@ -1,5 +1,4 @@
 ﻿using ArraySumLibrary.CarrierAlgebra;
-using ArraySumLibrary.ScalarAlgebra.Base;
 using ArraySumLibrary.ScalarAlgebra.Custom.Calendar;
 using Tests.CorrectResult.CarrierAlgebra.TestsData;
 
@@ -18,6 +17,7 @@ namespace Tests.CorrectResult.CarrierAlgebra.Tests
                 new WorkerCalendarCalculator());
             string res1 = string.Empty;
             string res2 = string.Empty;
+            string res3 = string.Empty;
             Random rnd = new Random();
 
             WorkerCalendar[] a = new WorkerCalendar[length];
@@ -43,7 +43,15 @@ namespace Tests.CorrectResult.CarrierAlgebra.Tests
             {
                 res2 = ex.Message;
             }
-            Assert.True(res1 == res2);
+            try
+            {
+                res3 = arrayElementsSum.ParallerSum(a).ToString();
+            }
+            catch (Exception ex)
+            {
+                res3 = ex.Message;
+            }
+            Assert.True(res1 == res2 && res2==res3);
         }
         /// <summary>
         /// Testing Sequential Addition with Correct Examples
@@ -64,6 +72,17 @@ namespace Tests.CorrectResult.CarrierAlgebra.Tests
         [Theory]
         [MemberData(nameof(ArrayWorkerCalendarTestData.LinqSumArrayTestData), MemberType = typeof(ArrayWorkerCalendarTestData))]
         public void LinqSumArrayTestCorrect(WorkerCalendar InCode, WorkerCalendar InReal)
+        {
+            Assert.Equal(InReal, InCode);
+        }
+        /// <summary>
+        /// Testing ParallerSum addition with Correct Examples
+        /// </summary>
+        /// <param name="InCode">programmatically</param>
+        /// <param name="InReal">expected</param>
+        [Theory]
+        [MemberData(nameof(ArrayWorkerCalendarTestData.ParallerSumTestData), MemberType = typeof(ArrayWorkerCalendarTestData))]
+        public void ParallerSumTestCorrect(WorkerCalendar InCode, WorkerCalendar InReal)
         {
             Assert.Equal(InReal, InCode);
         }
@@ -111,6 +130,33 @@ namespace Tests.CorrectResult.CarrierAlgebra.Tests
                         new TimeSpan(1, 1, 1),
                         11), 
                     null 
+                }).ToString();
+            }
+            catch (Exception ex)
+            {
+                res1 = ex.Message;
+            }
+            Assert.True(res1 == "Value cannot be null. (Parameter 'b')");
+        }
+
+        /// <summary>
+        /// Testing Linq Addition with overflow
+        /// </summary>
+        [Fact]
+        public void ParallerSumTestException()
+        {
+            var arrayElementsSum = new ArrayElementsSum<WorkerCalendar>(new WorkerCalendarCalculator());
+            string res1 = string.Empty;
+            try
+            {
+                res1 = arrayElementsSum.ParallerSum(new WorkerCalendar[2]
+                {
+                    new WorkerCalendar(
+                        "1",
+                        new TimeSpan(1,1,1),
+                        new TimeSpan(1, 1, 1),
+                        11),
+                    null
                 }).ToString();
             }
             catch (Exception ex)

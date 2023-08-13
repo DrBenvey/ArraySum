@@ -28,7 +28,7 @@ namespace Tests.CorrectResult.CarrierAlgebra.TestsData
                                 new TimeSpan(1, 1, 1),
                                 new TimeSpan(1, 1, 1),
                                 22) }
-                },
+                    },
                 {
                     new WorkerCalendar(
                             "Total",
@@ -50,7 +50,8 @@ namespace Tests.CorrectResult.CarrierAlgebra.TestsData
                                 "3",
                                 new TimeSpan(2, 2, 2),
                                 new TimeSpan(1, 1, 1),
-                                33)}
+                                33)
+                    }
                 }
             };
 
@@ -113,6 +114,41 @@ namespace Tests.CorrectResult.CarrierAlgebra.TestsData
                 new object[]
                 {
                     arrayElementsSum.LinqSumArray(keyValuePairs[
+                        new WorkerCalendar(
+                            "Total",
+                            new TimeSpan(4, 4, 4),
+                            new TimeSpan(3, 3, 3),
+                            66)]),
+                    new WorkerCalendar(
+                        "Total",
+                        new TimeSpan(4, 4, 4),
+                        new TimeSpan(3, 3, 3),
+                        66)
+                }
+            };
+        /// <summary>
+        /// data for testing ParallerSum
+        /// </summary>
+        public static IEnumerable<object[]> ParallerSumTestData =>
+            new List<object[]>
+            {
+                new object[]
+                {
+                    arrayElementsSum.ParallerSum(keyValuePairs[
+                        new WorkerCalendar(
+                            "Total",
+                            new TimeSpan(2, 2, 2),
+                            new TimeSpan(2, 2, 2),
+                            33)]),
+                    new WorkerCalendar(
+                        "Total",
+                        new TimeSpan(2, 2, 2),
+                        new TimeSpan(2, 2, 2),
+                        33)
+                },
+                new object[]
+                {
+                    arrayElementsSum.ParallerSum(keyValuePairs[
                         new WorkerCalendar(
                             "Total",
                             new TimeSpan(4, 4, 4),

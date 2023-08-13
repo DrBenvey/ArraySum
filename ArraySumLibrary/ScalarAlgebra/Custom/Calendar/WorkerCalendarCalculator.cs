@@ -12,6 +12,8 @@ namespace ArraySumLibrary.ScalarAlgebra.Custom.Calendar
             int64Calculator.Zero,
             Header);
 
+        public override bool IsAdditionAssociative => true;
+
         public override WorkerCalendar Add(WorkerCalendar a, WorkerCalendar b)
         {
             // null check (ArgumentNullException("param"))

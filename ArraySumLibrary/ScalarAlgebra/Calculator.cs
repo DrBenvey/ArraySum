@@ -18,5 +18,9 @@
         /// <param name="b">second</param>
         /// <returns>result of summation or Exception ex</returns>
         public abstract T Add(T a, T b);
+        /// <summary>
+        /// is addition associative
+        /// </summary>
+        public abstract bool IsAdditionAssociative { get; }
     }
 }

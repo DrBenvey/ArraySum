@@ -6,6 +6,7 @@
     public class Int64Calculator : Calculator<long>
     {
         public override long Zero => 0;
+        public override bool IsAdditionAssociative => true;
 
         public override long Add(long a, long b)
         {
